@@ -1,0 +1,8 @@
+6.1 select s.name,p.name,p.hours
+    from assignedto a inner join scientists s on a.scientist = s.ssn join projects p inner join assignedto ao on p.code = ao.project
+    order by s.name ,p.name;
+
+6.2 select name
+   from projects
+   where code not in (select project
+   from assignedto);

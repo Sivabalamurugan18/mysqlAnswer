@@ -1,0 +1,81 @@
+2.1 select lastname 
+    from employees;
+
+2.2 select distinct(lastname) 
+    from employees;
+
+2.3 select *
+    from employees
+    where lastname IN ('smith');
+
+2.4 select *
+    from employees
+    where lastname IN ('smith','Doe');
+
+2.5 select *
+    from employees
+    where department =14;
+
+2.6 select *
+    from employees
+    where department IN(37,77);
+
+2.7 select *
+    from employees
+    where lastname like 'S%';
+
+2.8 select sum(budget)
+    from departments;
+
+2.9 select count(*),department
+    from employees
+    group by department;
+
+2.10 select *
+     from employees inner join departments on employees.department=departments.code;
+
+2.11 select employees.name,lastname,departments.name,budget
+     from employees inner join departments on employees.department=departments.code;
+
+2.12 select name,lastname
+     from employees
+     where department IN (select code
+     from departments
+     where budget>60000);
+
+2.13 select name 
+     from departments
+     where budget>(select avg(budget) from departments);
+
+2.14 select name 
+     from departments
+     where code in (select department
+     from employees
+     group by department
+     having count(*)>2);
+
+2.15 select name, lastname 
+     from employees
+     where department =(select code
+     from departments
+     where budget =(select min(budget)
+     from departments 
+     where budget>(select min(budget)
+     from departments)));
+
+2.16 insert into departments values(11,'Quality Assurance',40000);
+
+2.17 update departments
+     set budget =(budget-(budget*10/100))
+     where code In (14,37,59,77,11);
+
+2.18 update employees
+     set department =14
+     where department IN (77);
+
+2.19 delete from employees where department in (select code from departments where name IN ('IT') and code IN (14));
+
+2.20 delete from employees where department in (select code from departments where budget>=60000);
+
+2.21 truncate table employees ;
+

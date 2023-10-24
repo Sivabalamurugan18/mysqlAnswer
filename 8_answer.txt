@@ -1,0 +1,7 @@
+8.1 select name
+    from physician
+    where EmployeeID not in (select physician
+    from trained_in);
+
+8.2 select p.name,p.Position,undergoes.DateUndergoes,patient.name
+    from physician p join procedures inner join undergoes  on procedures.code =undergoes.procedures join patient inner join undergoes u on u.Patient IN (patient.ssn);

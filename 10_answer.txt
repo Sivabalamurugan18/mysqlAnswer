@@ -1,0 +1,18 @@
+10.1 SELECT DISTINCT p.*, a.*
+     FROM PEOPLE p
+     inner JOIN ADDRESS a ON p.ID = a.ID;
+
+10.2 SELECT p.*, a.*
+FROM PEOPLE p
+LEFT JOIN (
+  SELECT a1.*
+  FROM ADDRESS a1
+  WHERE a1.ID = (
+    SELECT a2.ID
+    FROM ADDRESS a2
+    WHERE a2.ID = a1.ID
+    ORDER BY a2.updateDate DESC
+    LIMIT 1
+  )
+) a ON p.ID = a.ID;
+
